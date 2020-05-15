@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/search_bar_background"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monkey"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/definition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="This is a very interesting species closely related to man. This is a very interesting species closely related to man. This is a very interesting species closely related to man"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/word" />
+
+    <ImageView
+        android:id="@+id/favorites_star"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/clear_star"
+        app:layout_constraintBottom_toBottomOf="@id/word"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/thumbs_up_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="323"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/definition" />
+
+    <ImageView
+        android:id="@+id/thumbs_up_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/happy"
+        app:layout_constraintBottom_toBottomOf="@id/thumbs_up_count"
+        app:layout_constraintStart_toEndOf="@id/thumbs_up_count"
+        app:layout_constraintTop_toTopOf="@id/thumbs_up_count" />
+
+    <TextView
+        android:id="@+id/thumbs_down_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="999"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/thumbs_up_count"
+        app:layout_constraintStart_toEndOf="@id/thumbs_up_icon" />
+
+    <ImageView
+        android:id="@+id/thumbs_down_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/angry"
+        app:layout_constraintBottom_toBottomOf="@id/thumbs_down_count"
+        app:layout_constraintStart_toEndOf="@id/thumbs_down_count"
+        app:layout_constraintTop_toTopOf="@id/thumbs_down_count" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
