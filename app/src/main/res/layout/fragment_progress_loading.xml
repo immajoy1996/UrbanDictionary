@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Loading Results"
-        android:textColor="#0084FF"
+        android:text="@string/loading_results"
+        android:textColor="@color/loading_progress_blue"
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@id/retrieving_options_line_progress" />
 
@@ -22,8 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:indeterminateTint="#0084FF"
-        android:tooltipText="Loading results"
+        android:indeterminateTint="@color/loading_progress_blue"
+        android:tooltipText="@string/loading_results"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
     android:id="@+id/base_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
+    android:background="@color/white"
     android:padding="10dp"
     tools:context=".ui.BaseActivity">
 
@@ -19,14 +19,14 @@
 
     <EditText
         android:id="@+id/search"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/search_width"
         android:layout_height="35dp"
         android:layout_marginStart="15dp"
         android:background="@drawable/search_bar_background"
         android:hint="Search"
         android:textAlignment="center"
-        android:textColor="#696969"
-        android:textColorHint="#D3D3D3"
+        android:textColor="@color/dark_gray"
+        android:textColorHint="@color/light_gray"
         app:layout_constraintStart_toEndOf="@id/app_logo" />
 
     <ImageView
@@ -45,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:padding="5dp"
-        android:text="Sort By: "
-        android:textColor="#000000"
+        android:text="@string/sort_by"
+        android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/most"
         app:layout_constraintEnd_toStartOf="@id/most"
@@ -59,8 +59,8 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/sort_by_button_enabled"
         android:padding="5dp"
-        android:text="Most"
-        android:textColor="#000000"
+        android:text="@string/most"
+        android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,10 +72,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:background="@drawable/sort_by_button_disabled"
-        android:text="Least"
-        android:textColor="#000000"
-        android:textSize="15sp"
         android:padding="5dp"
+        android:text="@string/least"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/most"
         app:layout_constraintStart_toEndOf="@id/most"
         app:layout_constraintTop_toTopOf="@id/most" />
@@ -86,10 +86,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:background="@drawable/sort_by_button_disabled"
-        android:text="Favorite"
-        android:textColor="#000000"
-        android:textSize="15sp"
         android:padding="5dp"
+        android:text="@string/favorite"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/least"
         app:layout_constraintStart_toEndOf="@id/least"
         app:layout_constraintTop_toTopOf="@id/least" />
