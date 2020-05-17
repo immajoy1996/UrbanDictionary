@@ -2,6 +2,7 @@ package com.example.urbandic.ui
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.urbandic.di.AppComponentHolder
 import com.example.urbandic.R
@@ -21,9 +22,10 @@ import javax.inject.Inject
 class DictionaryActivity : BaseActivity(), FavoritesStarClickInterface {
     @Inject
     lateinit var dictionaryViewModel: DictionaryViewModelInterface
-
     @Inject
     lateinit var wordItemDao: WordItemDao
+
+    private var progressFragment = ProgressLoadingFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,22 @@ class DictionaryActivity : BaseActivity(), FavoritesStarClickInterface {
         setUpSearch()
         setUpSortByButtons()
         setUpSortBySwitch()
+    }
+
+    private fun loadProgressFragment() {
+        loadFragment(progressFragment)
+    }
+
+    private fun removeProgressFragment() {
+        supportFragmentManager.popBackStack()
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(progress_container.id, fragment)
+            .addToBackStack(fragment.javaClass.name)
+            .commit()
     }
 
     private fun setUpSortBySwitch() {
@@ -97,25 +115,32 @@ class DictionaryActivity : BaseActivity(), FavoritesStarClickInterface {
     }
 
     private fun lookupTerm(term: String) {
+        loadProgressFragment()
         addDisposable(
-            dictionaryViewModel.getSomething(term).subscribe({
+            dictionaryViewModel.searchForTerm(term).subscribe({
+                removeProgressFragment()
                 (words_recycler.adapter as DictionaryAdapter).refreshWithSearchResults(it)
             }, {
+                removeProgressFragment()
                 Toast.makeText(this, "error retrieving definitions", Toast.LENGTH_SHORT).show()
             })
         )
     }
 
     private fun setUpWordsRecycler(defaultWord: String = "Dog") {
+        search.setText(defaultWord)
+        loadProgressFragment()
         addDisposable(
-            dictionaryViewModel.getSomething(defaultWord).subscribe({
+            dictionaryViewModel.searchForTerm(defaultWord).subscribe({
                 words_recycler.apply {
+                    removeProgressFragment()
                     layoutManager =
                         LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     adapter =
                         DictionaryAdapter(it, this@DictionaryActivity)
                 }
             }, {
+                removeProgressFragment()
                 Toast.makeText(this, "error retrieving definitions", Toast.LENGTH_SHORT).show()
             })
         )

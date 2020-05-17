@@ -7,7 +7,7 @@ import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 interface DictionaryViewModelInterface {
-    fun getSomething(term: String): Flowable<DictionaryTermResponse>
+    fun searchForTerm(term: String): Flowable<DictionaryTermResponse>
     fun getSortByState(): PublishSubject<String>
     fun setSortByState(state: String)
 }
@@ -22,7 +22,7 @@ class DictionaryViewModel @Inject constructor(
         sortBySubject.onNext(MOST)
     }
 
-    override fun getSomething(term: String): Flowable<DictionaryTermResponse> {
+    override fun searchForTerm(term: String): Flowable<DictionaryTermResponse> {
         return baseRepository.getSomething(term)
     }
 
