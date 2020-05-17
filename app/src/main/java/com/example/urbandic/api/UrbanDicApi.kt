@@ -30,7 +30,10 @@ class UrbanDicApi : UrbanDicApiInterface {
 
     companion object {
         private const val BASE_URL = "https://mashape-community-urban-dictionary.p.rapidapi.com"
-        val urbanDicApi = UrbanDicApi()
+        private const val RAPID_API_HOST_KEY = "x-rapidapi-host"
+        private const val RAPID_API_HOST_VALUE = "mashape-community-urban-dictionary.p.rapidapi.com"
+        private const val RAPID_API_KEY = "x-rapidapi-key"
+        private const val RAPID_API_VALUE = "e11daaf4eemsh1aeb2879d7f4a2ep18720fjsn84b451927ac0"
 
         private var client: OkHttpClient? = null
 
@@ -61,15 +64,12 @@ class UrbanDicApi : UrbanDicApiInterface {
             @Throws(IOException::class)
             override fun intercept(chain: Interceptor.Chain): Response {
                 val originalRequest = chain.request()
-
                 val newRequest = originalRequest.newBuilder()
-                    .header("x-rapidapi-host", "mashape-community-urban-dictionary.p.rapidapi.com")
-                    .header("x-rapidapi-key", "e11daaf4eemsh1aeb2879d7f4a2ep18720fjsn84b451927ac0")
+                    .header(RAPID_API_HOST_KEY, RAPID_API_HOST_VALUE)
+                    .header(RAPID_API_KEY, RAPID_API_VALUE)
                     .build()
-
                 return chain.proceed(newRequest)
             }
-
         }
 
         private val gsonInstance: Gson
